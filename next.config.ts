@@ -7,17 +7,6 @@ const config: NextConfig = {
   output: "standalone",
   turbopack: { root: path.resolve(process.cwd()) },
   experimental: { optimizePackageImports: ["lucide-react", "framer-motion"] },
-  async redirects() {
-    return [
-      {
-        // Send the default Vercel URL to the real domain.
-        source: "/:path*",
-        has: [{ type: "host", value: "auren-web-coral.vercel.app" }],
-        destination: "https://auren.rest/:path*",
-        permanent: false,
-      },
-    ];
-  },
   async headers() {
     return [
       {
