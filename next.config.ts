@@ -1,9 +1,11 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   output: "standalone",
+  turbopack: { root: path.resolve(process.cwd()) },
   experimental: { optimizePackageImports: ["lucide-react", "framer-motion"] },
   async headers() {
     return [
