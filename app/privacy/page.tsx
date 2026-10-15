@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
+import { pageMetadata, breadcrumbNode, jsonLdString } from "@/lib/seo";
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/config";
 import { ButtonLink, NoticePage } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Privacy" };
+// Placeholder content: keep out of the index until the real policy is published.
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy",
+  description: "Auren’s privacy policy is being prepared. This site sets no advertising or analytics cookies.",
+  path: "/privacy",
+  index: false,
+});
+
+const breadcrumbLd = { "@context": "https://schema.org", ...breadcrumbNode("Privacy", "/privacy") };
 
 export default function Privacy() {
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(breadcrumbLd) }} />
     <NoticePage eyebrow="Legal" title="Privacy policy" actions={<ButtonLink href="/" variant="secondary">Back to Auren</ButtonLink>}>
       <p>
         Our full privacy policy is being prepared and will be published here
@@ -16,5 +27,6 @@ export default function Privacy() {
         Questions in the meantime: <a className="underline underline-offset-4" href={`mailto:${CONTACT_MAILTO}`}>{CONTACT_EMAIL}</a>
       </p>
     </NoticePage>
+    </>
   );
 }

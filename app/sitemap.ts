@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { AUREN_URL } from "@/lib/config";
 
+/**
+ * Canonical, indexable URLs only. /privacy and /terms are placeholders marked
+ * noindex, so they are intentionally omitted until real content ships.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", "/privacy", "/terms"].map((p) => ({ url: `${AUREN_URL}${p}` }));
+  return [{ url: AUREN_URL, changeFrequency: "monthly", priority: 1 }];
 }

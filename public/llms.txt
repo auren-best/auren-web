@@ -1,0 +1,15 @@
+# Auren
+
+> Auren is an independent software company building reliable products for developers and modern digital businesses.
+
+## Pages
+
+- [Auren home](https://auren.rest/): Company overview, philosophy, and products.
+
+## Products
+
+- [Zent](https://zent.auren.rest): Server monitoring by Auren. Capabilities on auren.rest describe intended scope; availability is labelled individually.
+
+## Contact
+
+- hello@auren.rest

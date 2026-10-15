@@ -7,6 +7,17 @@ const config: NextConfig = {
   output: "standalone",
   turbopack: { root: path.resolve(process.cwd()) },
   experimental: { optimizePackageImports: ["lucide-react", "framer-motion"] },
+  async redirects() {
+    // One canonical hostname: send www to the apex (permanent).
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.auren.rest" }],
+        destination: "https://auren.rest/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

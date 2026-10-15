@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { CONTACT_EMAIL, CONTACT_MAILTO, ZENT_URL } from "@/lib/config";
 import {
   ButtonLink,
@@ -9,8 +10,59 @@ import {
   TextLink,
   ZentLogo,
 } from "@/components/ui";
+import { SITE_DESCRIPTION, SITE_NAME, TAGLINE, ORG_ID, WEBSITE_ID, jsonLdString } from "@/lib/seo";
+import { AUREN_URL } from "@/lib/config";
 import { HeroArt } from "@/components/hero-art";
 import { MiniDashboard } from "@/components/mini-dashboard";
+
+export const metadata: Metadata = {
+  title: { absolute: `${SITE_NAME} — ${TAGLINE}` },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — ${TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — ${TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+};
+
+const faqs = [
+  {
+    q: "What is Auren?",
+    a: "Auren is an independent software company that builds reliable products for developers and modern digital businesses. Its first product is Zent, a server-monitoring product.",
+  },
+  {
+    q: "What is Zent?",
+    a: "Zent is Auren’s server-monitoring product, designed to help teams know when something breaks, understand why, and keep their services running. Its planned scope includes uptime checks, response-time tracking, resource monitoring, incident history and alerts.",
+  },
+  {
+    q: "Is Zent available today?",
+    a: "The capabilities listed on this page describe Zent’s intended scope. Individual capabilities are labelled as their availability is confirmed. Visit the Zent website for current status.",
+  },
+  {
+    q: "How can I contact Auren?",
+    a: `Email ${CONTACT_EMAIL}.`,
+  },
+];
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${AUREN_URL}/#webpage`,
+  url: AUREN_URL,
+  name: `${SITE_NAME} — ${TAGLINE}`,
+  description: SITE_DESCRIPTION,
+  isPartOf: { "@id": WEBSITE_ID },
+  about: { "@id": ORG_ID },
+  inLanguage: "en",
+};
 
 const principles = [
   {
@@ -40,6 +92,10 @@ const capabilities = [
 export default function Home() {
   return (
     <main id="main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdString(webPageLd) }}
+      />
       {/* Hero */}
       <section aria-labelledby="hero-title" className="bg-white">
         <Container className="grid items-center gap-16 pb-24 pt-20 md:pb-32 md:pt-28 lg:grid-cols-12">
@@ -223,6 +279,33 @@ export default function Home() {
           </Reveal>
         </div>
       </Section>
+
+      {/* FAQ */}
+      <section
+        id="faq"
+        aria-labelledby="faq-title"
+        className="border-t border-gray-200 bg-white"
+      >
+        <Container className="grid gap-12 py-20 md:py-28 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Eyebrow>Questions</Eyebrow>
+            <h2
+              id="faq-title"
+              className="mt-4 text-3xl font-medium tracking-display md:text-5xl"
+            >
+              About Auren and Zent.
+            </h2>
+          </div>
+          <dl className="divide-y divide-gray-200 border-y border-gray-200 lg:col-span-7">
+            {faqs.map((f) => (
+              <div key={f.q} className="py-6">
+                <dt className="text-lg font-medium tracking-[-0.02em]">{f.q}</dt>
+                <dd className="mt-2 max-w-xl leading-relaxed text-gray-600">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </section>
 
       {/* Final CTA */}
       <Section tone="inverted" labelledBy="cta-title">
