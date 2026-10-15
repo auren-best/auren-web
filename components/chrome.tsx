@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, ZENT_URL } from "@/lib/config";
+import { CONTACT_EMAIL, CONTACT_MAILTO, ZENT_URL } from "@/lib/config";
 import {
   AurenLogo,
   SiteFooter,
@@ -73,7 +73,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Auren. All rights reserved.</p>
           <p>
             Zent is a product by Auren ·{" "}
-            <a className="underline underline-offset-4 hover:text-white" href={`mailto:${CONTACT_EMAIL}`}>
+            <a className="underline underline-offset-4 hover:text-white" href={`mailto:${CONTACT_MAILTO}`}>
               {CONTACT_EMAIL}
             </a>
           </p>

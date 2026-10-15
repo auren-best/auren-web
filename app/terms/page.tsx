@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CONTACT_EMAIL } from "@/lib/config";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/config";
 import { ButtonLink, NoticePage } from "@/components/ui";
 
 export const metadata: Metadata = { title: "Terms" };
@@ -13,7 +13,7 @@ export default function Terms() {
         customers.
       </p>
       <p className="mt-4">
-        Questions in the meantime: <a className="underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        Questions in the meantime: <a className="underline underline-offset-4" href={`mailto:${CONTACT_MAILTO}`}>{CONTACT_EMAIL}</a>
       </p>
     </NoticePage>
   );

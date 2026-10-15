@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL, ZENT_URL } from "@/lib/config";
+import { CONTACT_EMAIL, CONTACT_MAILTO, ZENT_URL } from "@/lib/config";
 import {
   ButtonLink,
   Container,
@@ -265,7 +265,7 @@ export default function Home() {
           </div>
           <div className="md:col-span-6 md:text-right">
             <a
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={`mailto:${CONTACT_MAILTO}`}
               className="inline-block border-b border-black pb-1 text-xl tracking-[-0.02em] md:text-2xl"
             >
               {CONTACT_EMAIL}
